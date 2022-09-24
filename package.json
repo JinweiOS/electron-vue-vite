@@ -4,7 +4,8 @@
   "main": "electron/main.js",
   "version": "0.0.0",
   "scripts": {
-    "dev": "electron ./ && vite",
+    "serve": "vite",
+    "dev": "node build/start.js",
     "build": "vite build",
     "preview": "vite preview"
   },

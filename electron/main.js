@@ -8,14 +8,14 @@ function createWindow () {
   })
   const timer = setInterval(async () => {
     win.loadURL('http://127.0.0.1:5173/').then(() => {
-        console.log('success')
+        console.log('Electron starts success!😂')
+        win.webContents.openDevTools();
         clearInterval(timer)
     }).catch(() => {
         console.log('electron are waitting vite starting...')
     })
   }, 2000)
 
-  win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
