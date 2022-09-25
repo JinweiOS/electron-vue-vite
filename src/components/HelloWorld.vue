@@ -22,13 +22,13 @@ export default {
       <echart-graph></echart-graph>
     </div>
     <div class="chart-layout">
-      <!-- <echart-graph-two></echart-graph-two> -->
+      <echart-graph-two></echart-graph-two>
     </div>
     <div class="chart-layout">
-      <!-- <echart-graph-three></echart-graph-three> -->
+      <echart-graph-three></echart-graph-three>
     </div>
     <div class="chart-layout">
-      <!-- <echart-graph-four></echart-graph-four> -->
+      <echart-graph-four></echart-graph-four>
     </div>
   </div>
 </template>
