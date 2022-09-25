@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "echarts": "^5.3.3",
     "electron": "^20.2.0",
     "vue": "^3.2.37"
   },
