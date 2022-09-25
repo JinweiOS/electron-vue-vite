@@ -4,6 +4,7 @@
 <script>
 import * as echarts from 'echarts';
 import data from '../json/second.json'
+import {$on, TypeSet} from '../EventBus'
 export default {
   name: 'EchartGraphFour',
   data: function() {
@@ -15,6 +16,9 @@ export default {
   mounted() {
     this.myChart = echarts.init(this.$refs.chart);
     this.render(data);
+    $on(TypeSet.resize, () => {
+      this.myChart.resize()
+    })
   },
   methods: {
     render(json) {

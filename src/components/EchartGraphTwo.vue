@@ -5,6 +5,7 @@
 import emoji from '../json/second/emoji.json';
 import life from '../json/second/life.json';
 import * as echarts from 'echarts'
+import { $on, TypeSet } from '../EventBus'
 
 let option;
 let startIndex = 10;
@@ -143,13 +144,13 @@ function getData(res) {
 }
 
 function updateYear(year, myChart) {
-    let source = data.slice(1).filter(function (d) {
-      return d[4] === year;
-    });
-    option.series[0].data = source;
-    option.graphic.elements[0].style.text = year;
-    myChart.setOption(option);
-  }
+  let source = data.slice(1).filter(function (d) {
+    return d[4] === year;
+  });
+  option.series[0].data = source;
+  option.graphic.elements[0].style.text = year;
+  myChart.setOption(option);
+}
 
 export default {
   name: 'EchartGraphTwo',
@@ -169,6 +170,9 @@ export default {
         }, (i - startIndex) * updateFrequency);
       })(i);
     }
+    $on(TypeSet.resize, () => {
+      this.myChart.resize()
+    })
   },
   methods: {
 

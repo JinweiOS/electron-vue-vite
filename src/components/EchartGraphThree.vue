@@ -3,6 +3,7 @@
 </template>
 <script>
 import * as echarts from 'echarts';
+import {$on, TypeSet} from '../EventBus'
 const option = {
   title: {
     text: 'Referer of a Website',
@@ -62,7 +63,17 @@ export default {
     // option.series.data = this.arr.map(item => item);
     // console.log(option)
     this.chart.setOption(option);
-  }
+    console.log(Object.entries(this.arr).map(item => item))
+    // 监听resize
+    $on(TypeSet.resize, () => {
+      this.chart.resize()
+    })
+  },
+  // methods: {
+  //   resizeChart() {
+  //     this.chart.resize()
+  //   }
+  // },
 }
 </script>
 <style>

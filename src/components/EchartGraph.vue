@@ -3,6 +3,7 @@
 </template>
 <script>
 import * as echarts from 'echarts'
+import {$on, TypeSet} from '../EventBus'
 
 export default {
   name: 'EchartGraph',
@@ -27,6 +28,9 @@ export default {
         }
       ]
     });
+    $on(TypeSet.resize, () => {
+      myChart.resize()
+    })
   }
 }
 </script>
