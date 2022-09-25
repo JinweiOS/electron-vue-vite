@@ -1,20 +1,24 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
   })
-  const timer = setInterval(async () => {
-    win.loadURL('http://127.0.0.1:5173/').then(() => {
+  if (process.env.NODE_ENV === 'development') {
+    const timer = setInterval(async () => {
+      win.loadURL('http://127.0.0.1:5173/').then(() => {
         console.log('Electron starts success!😂')
         win.webContents.openDevTools();
         clearInterval(timer)
-    }).catch(() => {
+      }).catch(() => {
         console.log('electron are waitting vite starting...')
-    })
-  }, 2000)
+      })
+    }, 2000)
+  } else {
+    win.loadFile(path.join(__dirname, '../vite-sources/index.html'))
+  }
 
 }
 
