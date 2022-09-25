@@ -28,16 +28,20 @@ wsServer.on('connection', (wsClient) => {
      */
     setInterval(() => {
         wsClient.send(JSON.stringify(randomData()))
-    }, 100)
+    }, 1000)
     
 })
 
-let now = new Date(1997, 9, 3);
+let now = new Date(2000, 5, 29);
 let oneDay = 24 * 3600 * 1000;
 let value = Math.random() * 1000;
 function randomData() {
-    now = new Date();
-    value = value + Math.random(now + oneDay) * 21 - 10;
+    // 时间戳+一天
+    console.log(now.getTime())
+    now = new Date(now.getTime() + 60 * 60 * 24 * 1000);
+    console.log(now.getDay())
+    // now = new Date(+now + oneDay);
+    value = value + Math.random() * 21 - 10;
     return {
       name: now.toString(),
       value: [

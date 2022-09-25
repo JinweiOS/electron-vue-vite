@@ -5,8 +5,17 @@
 import * as echarts from 'echarts'
 import { $on, TypeSet } from '../EventBus'
 const localDataChart = []
+let now = new Date(1997, 9, 3);
+let oneDay = 24 * 3600 * 1000;
+let value = Math.random() * 1000;
+for (var i = 0; i < 1000; i++) {
+  localDataChart.push(randomData());
+}
+console.log(localDataChart)
 function randomData() {
-  now = new Date(now + oneDay);
+  // +now可以转换为时间戳
+  now = new Date(+now + oneDay);
+  console.log(now, 'now')
   value = value + Math.random() * 21 - 10;
   return {
     name: now.toString(),
@@ -15,12 +24,6 @@ function randomData() {
       Math.round(value)
     ]
   };
-}
-let now = new Date(1997, 9, 3);
-let oneDay = 24 * 3600 * 1000;
-let value = Math.random() * 1000;
-for (var i = 0; i < 1000; i++) {
-  localDataChart.push(randomData());
 }
 // 表格配置
 const option = {
@@ -81,9 +84,9 @@ export default {
     const socket = new WebSocket('ws://127.0.0.1:9000');
     socket.addEventListener('message', (event) => {
       // TODO: GET DATA
-      if (localDataChart.length > 1000) {
-        localDataChart.shift()
-      }
+      // if (localDataChart.length > 1000) {
+      //   localDataChart.shift()
+      // }
       console.log(event.data)
       localDataChart.push(JSON.parse(event.data))
       // TODO: ECHARTS更新
